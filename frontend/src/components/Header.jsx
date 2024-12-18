@@ -118,7 +118,7 @@ const Header = () => {
           <button
             className="relative bg-white text-[#120F1C] py-2 px-4 rounded-md font-semibold 
             transition-all duration-300 ease-in-out hover:text-white hover:bg-[#FF8C00] 
-            hover:shadow-[0_0_15px_5px_#FF8C00] hover:scale-105"
+            hover:shadow-[0_0_15px_5px_#FF8C00] hover:scale-105 hidden md:flex"
           >
             Get Started
           </button>
