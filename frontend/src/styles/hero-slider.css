@@ -1,0 +1,14 @@
+/* Custom Pagination Dots */
+.swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff8c00; /* Orange highlight for active dot */
+  width: 12px;
+  height: 12px;
+}

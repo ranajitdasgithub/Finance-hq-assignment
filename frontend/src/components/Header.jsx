@@ -1,33 +1,92 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
 const Header = () => {
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Scroll Event Logic
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true); // Trigger isScrolled when scrolled 50px down
+      } else {
+        setIsScrolled(false); // Reset isScrolled when at top
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="bg-gradient-to-r from-[#120F1C] via-[#6A0DAD] to-[#FF8C00] text-white shadow-md">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+    <header
+      className={`fixed top-0 left-0 w-full bg-gradient-to-r from-[#120F1C] via-[#6A0DAD] to-[#FF8C00] text-white shadow-md z-20 transition-all duration-300 ${
+        isScrolled ? "border-[0.5px] border-white-200" : "py-4"
+      }`}
+    >
+      <div className="container mx-auto flex justify-between items-center py-2 px-6">
         {/* Logo Section */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-white text-[#120F1C] flex items-center justify-center font-bold text-lg">
-            FH
-          </div>
+          <img
+            src="./Asset/logo.webp"
+            alt="Logo"
+            className="w-16 h-16 rounded-full"
+          />
           <span className="text-2xl font-semibold tracking-widest">
             ForensicsHQ
           </span>
         </div>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex gap-8">
+        <nav className="hidden md:flex gap-8 items-center">
           <a
             href="#home"
             className="hover:text-[#FF8C00] transition duration-300 ease-in-out"
           >
             Home
           </a>
-          <a
-            href="#programs"
-            className="hover:text-[#FF8C00] transition duration-300 ease-in-out"
+
+          {/* Programs Link with Dropdown and React Icons */}
+          <div
+            className="relative flex items-center gap-1 cursor-pointer"
+            onMouseEnter={() => setIsDropdownVisible(true)}
+            onMouseLeave={() => setIsDropdownVisible(false)}
           >
-            Programs
-          </a>
+            <span className="hover:text-[#FF8C00] transition duration-300 ease-in-out">
+              Programs
+            </span>
+            {isDropdownVisible ? (
+              <AiOutlineUp className="text-[#FF8C00] transition duration-300" />
+            ) : (
+              <AiOutlineDown className="text-white transition duration-300" />
+            )}
+
+            {/* Dropdown Menu */}
+            {isDropdownVisible && (
+              <div className="absolute top-6 left-0 bg-[#6A0DAD] text-white rounded-md shadow-lg w-40">
+                <a
+                  href="#program1"
+                  className="block px-4 py-2 hover:bg-[#FF8C00]"
+                >
+                  Program 1
+                </a>
+                <a
+                  href="#program2"
+                  className="block px-4 py-2 hover:bg-[#FF8C00]"
+                >
+                  Program 2
+                </a>
+                <a
+                  href="#program3"
+                  className="block px-4 py-2 hover:bg-[#FF8C00]"
+                >
+                  Program 3
+                </a>
+              </div>
+            )}
+          </div>
+
           <a
             href="#services"
             className="hover:text-[#FF8C00] transition duration-300 ease-in-out"
@@ -53,6 +112,17 @@ const Header = () => {
             Contact
           </a>
         </nav>
+
+        {/* Button Section */}
+        <div className="hidden md:flex">
+          <button
+            className="relative bg-white text-[#120F1C] py-2 px-4 rounded-md font-semibold 
+            transition-all duration-300 ease-in-out hover:text-white hover:bg-[#FF8C00] 
+            hover:shadow-[0_0_15px_5px_#FF8C00] hover:scale-105"
+          >
+            Get Started
+          </button>
+        </div>
 
         {/* Mobile Menu */}
         <div className="md:hidden">
