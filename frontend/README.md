@@ -6,3 +6,5 @@ npm install react-icons
 npm install framer-motion react-countup
 npm i react-intersection-observer
 
+
+🚀 Deployed Link- https://finance-hq.vercel.app/

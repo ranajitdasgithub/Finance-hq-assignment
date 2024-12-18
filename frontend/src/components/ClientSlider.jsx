@@ -14,7 +14,7 @@ const clientLogos = [
   "/Asset/CESC.png",
   "/Asset/TATA.png",
   "/Asset/VEDANTA.png",
-  "/AsseT/POWERGRID.png",
+  "/Asset/POWERGRID.png",
   "/Asset/MINISTRY.png",
   "/Asset/GAMUT.png",
 ];
