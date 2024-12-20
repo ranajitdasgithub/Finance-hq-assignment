@@ -38,7 +38,7 @@ const Timeline = () => {
             className="w-full h-full"
           >
             <path
-              d="M 50 20 C 150 100, 350 0, 450 100 S 350 200, 50 300 M 100 320 C 190 250, 280 550, 400 430"
+              d="M 50 20 C 150 100, 350 50, 390 200 M 390 200 C 300 150, 250 290, 50 300 M 100 320 C 190 250, 280 550, 400 430"
               stroke="#6B46C1"
               fill="none"
               strokeWidth="3"
@@ -48,7 +48,7 @@ const Timeline = () => {
         </div>
 
         {/* Timeline Content */}
-        <div className="relative z-10">
+        <div className="relative z-10 opacity-1">
           {timelineData.map((item, index) => (
             <TimelineCard
               key={index}

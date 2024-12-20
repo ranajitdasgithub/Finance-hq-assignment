@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CountUp from "react-countup";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const StatsSection = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [triggerCountUp, setTriggerCountUp] = useState(false);
 
   // Intersection Observer to detect scroll into view
   const controls = useAnimation();
@@ -12,10 +13,18 @@ const StatsSection = () => {
     threshold: 0.3, // Trigger when 30% of the section is visible
   });
 
-  if (inView && !hasAnimated) {
-    controls.start("visible");
-    setHasAnimated(true);
-  }
+  useEffect(() => {
+    if (inView && !hasAnimated) {
+      controls.start("visible");
+      setHasAnimated(true);
+      setTriggerCountUp(true); // Trigger the counter animation
+    }
+
+    if (!inView && hasAnimated) {
+      setHasAnimated(false); // Reset animation status if out of view
+      setTriggerCountUp(false); // Reset counter trigger
+    }
+  }, [inView, hasAnimated, controls]);
 
   return (
     <motion.div
@@ -41,7 +50,7 @@ const StatsSection = () => {
           {/* Stat 1 */}
           <div>
             <h3 className="text-5xl font-extrabold text-purple-700">
-              <CountUp start={0} end={40} duration={3} />+
+              {triggerCountUp && <CountUp start={0} end={40} duration={1.5} />}+
             </h3>
             <p className="text-gray-600 mt-2">Qualified Employees</p>
           </div>
@@ -49,7 +58,7 @@ const StatsSection = () => {
           {/* Stat 2 */}
           <div>
             <h3 className="text-5xl font-extrabold text-purple-700">
-              <CountUp start={0} end={60} duration={3} />+
+              {triggerCountUp && <CountUp start={0} end={60} duration={1} />}+
             </h3>
             <p className="text-gray-600 mt-2">Clients Served</p>
           </div>
@@ -57,7 +66,7 @@ const StatsSection = () => {
           {/* Stat 3 */}
           <div>
             <h3 className="text-5xl font-extrabold text-purple-700">
-              <CountUp start={0} end={4} duration={3} />
+              {triggerCountUp && <CountUp start={0} end={4} duration={1} />}
             </h3>
             <p className="text-gray-600 mt-2">National Offices</p>
           </div>
@@ -65,7 +74,10 @@ const StatsSection = () => {
           {/* Stat 4 */}
           <div>
             <h3 className="text-5xl font-extrabold text-purple-700">
-              <CountUp start={0} end={7500} duration={3} separator="," />+
+              {triggerCountUp && (
+                <CountUp start={0} end={7500} duration={1.5} separator="," />
+              )}
+              +
             </h3>
             <p className="text-gray-600 mt-2">Students Taught</p>
           </div>
