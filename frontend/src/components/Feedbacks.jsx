@@ -62,7 +62,7 @@ const FeedbackSection = () => {
 
       {/* Floating Gradient Decoration */}
       <div className="absolute w-[400px] h-[400px] bg-purple-400 rounded-full opacity-20 blur-3xl top-[-50px] left-[-50px]"></div>
-      <div className="absolute w-[300px] h-[300px] bg-blue-300 rounded-full opacity-20 blur-3xl bottom-[-50px] right-[-50px]"></div>
+      <div className="absolute w-[400px] h-[400px] bg-blue-300 rounded-full opacity-20 blur-3xl bottom-[-50px] right-[-50px]"></div>
 
       {/* Card Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-6xl">
